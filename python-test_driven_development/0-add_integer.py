@@ -11,9 +11,19 @@ def add_integer(a, b=98):
     Adds a and b if integers otherwise raises error
     '''
     if isinstance(a, float):
-        a = int(a)
+        if a != a:
+            raise ValueError("cannot convert float NaN to integer")
+        if a < -1.7976931348623157e+308 or a > 1.7976931348623157e+308:
+            raise OverflowError("cannot convert float infinity to integer")
+        else:
+            a = int(a)
     if isinstance(b, float):
-        b = int(b)
+        if b != b:
+            raise ValueError("cannot convert float NaN to integer")
+        if b < -1.7976931348623157e+308 or b > 1.7976931348623157e+308:
+            raise OverflowError("cannot convert float infinity to integer")
+        else:
+            b = int(b)
     if not isinstance(a, int):
         raise TypeError("a must be an integer")
     if not isinstance(b, int):
