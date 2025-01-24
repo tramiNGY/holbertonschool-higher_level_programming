@@ -6,7 +6,7 @@ size is an integer or raise TypeError and positive or raise ValueError.
 '''
 
 
-def print_square(size):
+def print_square(size=None):
     '''
     prints a square with the character #
     '''
