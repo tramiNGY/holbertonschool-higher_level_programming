@@ -31,9 +31,10 @@ def matrix_divided(matrix, div):
     new_matrix = []
     if div == float("inf"):
         new_matrix = [list(map(lambda x: 0.0, row))
-                for row in matrix]
+                      for row in matrix]
     else:
-        new_matrix = [list(map(lambda x: round(x / div, 2) if x != -0.0 else 0.0, row))
-                for row in matrix]
+        new_matrix = [list(map(
+            lambda x: round(x / div, 2) if x != -0.0 else 0.0, row))
+                    for row in matrix]
 
     return new_matrix
