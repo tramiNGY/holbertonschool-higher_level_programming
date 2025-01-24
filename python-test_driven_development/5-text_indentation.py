@@ -6,7 +6,7 @@ It permits to print a tet with 2 new lines after each of those characters:
 '''
 
 
-def text_indentation(text):
+def text_indentation(text=None):
     '''
     prints a text with 2 new lines after ., ? and :
     '''
