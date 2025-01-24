@@ -1,4 +1,4 @@
-#!/usr/bin.python3
+#!/usr/bin/python3
 '''
 The 5-text_indentation module supplies one function text_indentation.
 It permits to print a tet with 2 new lines after each of those characters:
