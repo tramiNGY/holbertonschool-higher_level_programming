@@ -10,7 +10,7 @@ def say_my_name(first_name, last_name=""):
     '''
     Prints the first name and last name
     '''
-    if first_name is None:
+    if first_name is None and last_name is None:
         raise TypeError("first_name must be a string")
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
