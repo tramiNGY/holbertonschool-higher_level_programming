@@ -30,4 +30,7 @@ ValueError: name must be greater than 0
 Traceback (most recent call last):
     ...
 ValueError: name must be greater than 0
-
+>>> base_geometry.integer_validator("none_value", None)
+Traceback (most recent call last):
+    ...
+TypeError: none_value must be an integer
