@@ -10,6 +10,18 @@ Exception: area() is not implemented
 Traceback (most recent call last):
     ...
 TypeError: <name> must be an integer
+>>> base_geometry.integer_validator("name", "")
+Traceback (most recent call last):
+    ...
+TypeError: <name> must be an integer
+>>> base_geometry.integer_validator("name", " ")
+Traceback (most recent call last):
+    ...
+TypeError: <name> must be an integer
+>>> base_geometry.integer_validator("name", 3.5)
+Traceback (most recent call last):
+    ...
+TypeError: <name> must be an integer
 >>> base_geometry.integer_validator("name", 0)
 Traceback (most recent call last):
     ...
