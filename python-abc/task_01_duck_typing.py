@@ -19,35 +19,27 @@ class Shape(ABC):
 
 class Circle(Shape):
     """This class is inherited from Shape"""
-    def __init__(self, radius=None):
-        if radius is None:
-            self.__radius = 0
-        else:
-            self.__radius = radius
+    def __init__(self, radius):
+        self.radius = radius
 
     def area(self):
-        return math.pi * self.__radius ** 2
+        return math.pi * self.radius ** 2
 
     def perimeter(self):
-        return 2 * math.pi * self.__radius
+        return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
     """This class is inherited from Shape"""
-    def __init__(self, width=None, height=None):
-        if width is None:
-            self.__width = 0
-        if height is None:
-            self.__height = 0
-        else:
-            self.__width = width
-            self.__height = height
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
     def area(self):
-        return self.__width * self.__height
+        return self.width * self.height
 
     def perimeter(self):
-        return self.__width * 2 + self.__height * 2
+        return self.width * 2 + self.height * 2
 
 
 def shape_info(shape):
