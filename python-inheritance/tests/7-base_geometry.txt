@@ -9,28 +9,28 @@ Exception: area() is not implemented
 >>> base_geometry.integer_validator("name", "John")
 Traceback (most recent call last):
     ...
-TypeError: name must be an integer
+TypeError: <name> must be an integer
 >>> base_geometry.integer_validator("emptystring", "")
 Traceback (most recent call last):
     ...
-TypeError: emptystring must be an integer
+TypeError: <name> must be an integer
 >>> base_geometry.integer_validator("spacestring", " ")
 Traceback (most recent call last):
     ...
-TypeError: spacestring must be an integer
+TypeError: <name> must be an integer
 >>> base_geometry.integer_validator("floatname", 3.5)
 Traceback (most recent call last):
     ...
-TypeError: floatname must be an integer
+TypeError: <name> must be an integer
 >>> base_geometry.integer_validator("name", 0)
 Traceback (most recent call last):
     ...
-ValueError: name must be greater than 0
+ValueError: <name> must be greater than 0
 >>> base_geometry.integer_validator("name", -3)
 Traceback (most recent call last):
     ...
-ValueError: name must be greater than 0
+ValueError: <name> must be greater than 0
 >>> base_geometry.integer_validator("none_value", None)
 Traceback (most recent call last):
     ...
-TypeError: none_value must be an integer
+TypeError: <name> must be an integer
