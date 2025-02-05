@@ -7,6 +7,7 @@ This module contains one class CountedIterator
 class CountedIterator:
     """Extends the built-in iterator"""
     def __init__(self, some_iterable):
+        self.__some_iterable = some_iterable
         self.__iterator = iter(some_iterable)
         self.__count = 0
 
@@ -14,8 +15,8 @@ class CountedIterator:
         return self.__count
 
     def __next__(self):
-        try:
-            self.__count += 1
+        self.__count += 1
+        if self.__count <= len(self.__some_iterable):
             return next(self.__iterator)
-        except StopIteration:
-            raise StopIteration
+        else:
+            raise StopIteration("No more items.")
