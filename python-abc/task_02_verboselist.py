@@ -20,5 +20,6 @@ class VerboseList(list):
         print(f"Removed [{item}] from the list.")
 
     def pop(self, index=-1):
-        popped_item = super().pop(index)
+        popped_item = self[index]
+        super().pop(index)
         print(f"Popped [{popped_item}] from the list.")
