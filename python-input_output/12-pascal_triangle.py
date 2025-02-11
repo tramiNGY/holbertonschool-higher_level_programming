@@ -5,6 +5,7 @@ This module contains one function pascal_triangle
 
 
 def pascal_triangle(n):
+    """Returns pascal triangle"""
     mainlist = []
     sublist = []
     if n <= 0:
