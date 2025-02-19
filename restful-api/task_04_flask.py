@@ -6,6 +6,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from collections import OrderedDict
+import json
 
 app = Flask(__name__)
 
@@ -17,10 +18,10 @@ def home():
 
 
 all_users = OrderedDict({
-    "jane": {"username": "jane", "name": "Jane",
-             "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John",
-             "age": 30, "city": "New York"}
+    "jane": OrderedDict({"username": "jane", "name": "Jane",
+             "age": 28, "city": "Los Angeles"}),
+    "john": OrderedDict({"username": "john", "name": "John",
+             "age": 30, "city": "New York"})
 })
 
 
@@ -43,7 +44,11 @@ def status():
 def users(username):
     """Returns user data"""
     if username in all_users:
-        return jsonify(all_users[username])
+        user_data = all_users[username]
+        return app.response_class(
+            json.dumps(user_data, indent=4, sort_keys=False), 
+            content_type='application/json'
+        )
     else:
         return jsonify({"error": "User not found"}), 404
 
@@ -65,16 +70,21 @@ def add_user():
     if new_user["username"] in all_users:
         return jsonify({"error": "Username already exists"}), 400
 
-    all_users[new_user["username"]] = {
+    all_users[new_user["username"]] = OrderedDict({
         "username": new_user["username"],
         "name": new_user["name"],
         "age": new_user["age"],
         "city": new_user["city"]
-    }
-    return jsonify({
+    })
+    response = {
         "message": "User added",
         "user": all_users[new_user["username"]]
-    }), 201
+    }
+
+    return app.response_class(
+        json.dumps(response, indent=4, sort_keys=False), 
+        content_type='application/json'
+    ), 201
 
 
 if __name__ == "__main__":
