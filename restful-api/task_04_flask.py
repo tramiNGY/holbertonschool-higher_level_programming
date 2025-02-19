@@ -18,10 +18,18 @@ def home():
 
 
 all_users = OrderedDict({
-    "jane": OrderedDict({"username": "jane", "name": "Jane",
-             "age": 28, "city": "Los Angeles"}),
-    "john": OrderedDict({"username": "john", "name": "John",
-             "age": 30, "city": "New York"})
+    "jane": OrderedDict({
+        "username": "jane",
+        "name": "Jane",
+        "age": 28,
+        "city": "Los Angeles"
+    }),
+    "john": OrderedDict({
+        "username": "john",
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    })
 })
 
 
@@ -46,7 +54,7 @@ def users(username):
     if username in all_users:
         user_data = all_users[username]
         return app.response_class(
-            json.dumps(user_data, indent=4, sort_keys=False), 
+            json.dumps(user_data, indent=4, sort_keys=False),
             content_type='application/json'
         )
     else:
@@ -82,7 +90,7 @@ def add_user():
     }
 
     return app.response_class(
-        json.dumps(response, indent=4, sort_keys=False), 
+        json.dumps(response, indent=4, sort_keys=False),
         content_type='application/json'
     ), 201
 
