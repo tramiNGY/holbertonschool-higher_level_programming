@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    """Displays home message"""
     return "Welcome to the Flask API!"
 
 
@@ -24,6 +25,7 @@ all_users = {
 
 @app.route("/data")
 def data():
+    """Returns username list"""
     userlist = []
     for key in all_users:
         userlist.append(key)
@@ -32,11 +34,13 @@ def data():
 
 @app.route("/status")
 def status():
+    """Returns OK status if no error"""
     return "OK"
 
 
 @app.route("/users/<username>")
 def users(username):
+    """Returns user data"""
     if username in all_users:
         return jsonify(all_users[username])
     else:
@@ -45,7 +49,9 @@ def users(username):
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
+    """Adds new user data and returns it"""
     new_user = request.get_json()
+    print(f"Received data: {new_user}")
     if "username" not in new_user:
         return ({"error": "Username is required"}), 400
 
