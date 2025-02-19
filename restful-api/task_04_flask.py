@@ -45,14 +45,14 @@ def users(username):
     if username in all_users:
         return jsonify(all_users[username])
     else:
-        return jsonify({"error": "User not found"})
+        return jsonify({"error": "User not found"}), 404
 
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
     """Adds new user data and returns it"""
     new_user = request.get_json()
-    if "username" not in new_user:
+    if not new_user or "username" not in new_user:
         return ({"error": "Username is required"}), 400
 
     if new_user["username"] in all_users:
