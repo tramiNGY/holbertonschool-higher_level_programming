@@ -49,6 +49,9 @@ def add_user():
     if "username" not in new_user:
         return ({"error": "Username is required"}), 400
 
+    if new_user["username"] in all_users:
+        return jsonify({"error": "Username already exists"}), 400
+
     all_users[new_user["username"]] = {
         "username": new_user["username"],
         "name": new_user["name"],
