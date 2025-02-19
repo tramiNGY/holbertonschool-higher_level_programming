@@ -24,7 +24,10 @@ all_users = {
 
 @app.route("/data")
 def data():
-    return jsonify(all_users)
+    userlist = []
+    for key in all_users:
+        userlist.append(key)
+    return jsonify(userlist)
 
 
 @app.route("/status")
