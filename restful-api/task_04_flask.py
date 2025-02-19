@@ -54,6 +54,9 @@ def add_user():
     new_user = request.get_json()
     if not new_user or "username" not in new_user:
         return ({"error": "Username is required"}), 400
+    
+    if "name" not in new_user or "city" not in new_user or "age" not in new_user:
+        return jsonify({"error": "Name, age, and city are required"}), 400
 
     if new_user["username"] in all_users:
         return jsonify({"error": "Username already exists"}), 400
