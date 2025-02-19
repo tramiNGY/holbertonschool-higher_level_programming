@@ -36,10 +36,9 @@ all_users = OrderedDict({
 @app.route("/data")
 def data():
     """Returns username list"""
-    userlist = []
-    for key in all_users:
-        userlist.append(key)
-    return jsonify(userlist)
+    userlist = [key for key in all_users]
+    formatted_userlist = ', '.join(f'"{user}"' for user in userlist)
+    return f"[{formatted_userlist}]"
 
 
 @app.route("/status")
