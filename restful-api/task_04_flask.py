@@ -16,20 +16,7 @@ def home():
     return "Welcome to the Flask API!"
 
 
-all_users = {
-    "jane": {
-        "username": "jane",
-        "name": "Jane",
-        "age": 28,
-        "city": "Los Angeles"
-    },
-    "john": {
-        "username": "john",
-        "name": "John",
-        "age": 30,
-        "city": "New York"
-    }
-}
+all_users = {}
 
 
 @app.route("/data")
@@ -76,6 +63,8 @@ def add_user():
 
     if new_user["username"] in all_users:
         return jsonify({"error": "Username already exists"}), 400
+
+    users.clear()
 
     all_users[new_user["username"]] = {
         "username": new_user["username"],
