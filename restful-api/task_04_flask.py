@@ -5,7 +5,6 @@ This module contains simple API using Python Flask
 from flask import Flask
 from flask import jsonify
 from flask import request
-from collections import OrderedDict
 import json
 
 app = Flask(__name__)
@@ -17,20 +16,20 @@ def home():
     return "Welcome to the Flask API!"
 
 
-all_users = OrderedDict({
-    "jane": OrderedDict({
+all_users = {
+    "jane": {
         "username": "jane",
         "name": "Jane",
         "age": 28,
         "city": "Los Angeles"
-    }),
-    "john": OrderedDict({
+    },
+    "john": {
         "username": "john",
         "name": "John",
         "age": 30,
         "city": "New York"
-    })
-})
+    }
+}
 
 
 @app.route("/data")
@@ -78,12 +77,12 @@ def add_user():
     if new_user["username"] in all_users:
         return jsonify({"error": "Username already exists"}), 400
 
-    all_users[new_user["username"]] = OrderedDict({
+    all_users[new_user["username"]] = {
         "username": new_user["username"],
         "name": new_user["name"],
         "age": new_user["age"],
         "city": new_user["city"]
-    })
+    }
     response = {
         "message": "User added",
         "user": all_users[new_user["username"]]
