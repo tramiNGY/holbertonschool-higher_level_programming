@@ -22,10 +22,7 @@ all_users = {}
 @app.route("/data")
 def data():
     """Returns username list"""
-    userlist = []
-    for key in all_users:
-        userlist.append(key)
-    return jsonify(userlist)
+    return jsonify(list(all_users.keys()))
 
 
 @app.route("/status")
@@ -55,11 +52,6 @@ def add_user():
     if not username:
         return ({"error": "Username is required"}), 400
 
-    if username in all_users:
-        return jsonify({"error": "Username already exists"}), 400
-
-    all_users.clear()
-
     all_users[username] = new_user
     response = {
         "message": "User added",
@@ -73,4 +65,4 @@ def add_user():
 
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(debug=True)
