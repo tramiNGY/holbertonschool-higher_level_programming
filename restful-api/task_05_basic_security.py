@@ -42,6 +42,10 @@ def login():
     data = request.get_json()
     username = data.get("username")
     password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Username and password are required"}), 400
+
     user = users.get(username)
     if user and check_password_hash(user["password"], password):
         access_token = create_access_token(identity={
