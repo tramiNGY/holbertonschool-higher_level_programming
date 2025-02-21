@@ -43,10 +43,6 @@ def login():
     data = request.get_json()
     username = data.get("username")
     password = data.get("password")
-
-    if not username or not password:
-        return jsonify({"error": "Username and password are required"}), 400
-
     user = users.get(username)
     if user and check_password_hash(user["password"], password):
         access_token = create_access_token(identity={
@@ -69,8 +65,6 @@ def jwt_protected():
 @jwt_required()
 def admin_only():
     current_user = get_jwt_identity()
-    if current_user is None:
-        return jsonify({"error": "Missing or invalid token"}), 401
     if current_user["role"] != "admin":
         return jsonify({"error": "Admin Access required"}), 403
     return "Admin Access: Granted"
