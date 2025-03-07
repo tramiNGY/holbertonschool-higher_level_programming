@@ -8,6 +8,10 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
+
+    if len(sys.argv) != 5:
+        exit(1)
+
     username = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]
