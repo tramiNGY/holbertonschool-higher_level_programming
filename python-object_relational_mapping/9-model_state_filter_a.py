@@ -22,8 +22,7 @@ if name == "main":
     session = Session()
 
     # Query the database for states containing the letter 'a'
-    states = session.query(State).filter(
-            State.name.like('%a%')).order_by(State.id).all()
+    states = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
 
     # Display the results
     for state in states:
