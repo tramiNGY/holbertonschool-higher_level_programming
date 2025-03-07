@@ -17,22 +17,16 @@ if __name__ == "__main__":
     db_name = sys.argv[3]
     state_name = sys.argv[4]
 
-    # Connexion à la base de données
     db = MySQLdb.connect(host="localhost", port=3306,
                          user=username, passwd=password, db=db_name)
     cursor = db.cursor()
-
-    # Requête sécurisée avec des paramètres pour éviter l'injection SQL
-    cursor.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-                   (state_name,))
-
-    # Récupération des résultats
+    cursor.execute("SELECT * FROM states "
+                   "WHERE name = '{}' "
+                   "ORDER BY id ASC".format(state_name))
     states = cursor.fetchall()
 
-    # Affichage des résultats
     for state in states:
         print(state)
 
-    # Fermeture de la connexion
     cursor.close()
     db.close()
