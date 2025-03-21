@@ -4,13 +4,14 @@
         <title>Items List</title>
     </head>
     <body>
-        {% if error %}
-            <p>{{ error }}</p>
-        {% endif %}
         <ul>
-            {% for item in items %}
-                <li>{{ item }}</li>
-            {% endfor %}
+            {% if not items %}
+                <p>No items found</p>
+            {% else %}
+                {% for item in items %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </body>
 </html>
