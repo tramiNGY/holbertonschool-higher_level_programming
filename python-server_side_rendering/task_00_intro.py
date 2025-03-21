@@ -8,7 +8,7 @@ def generate_invitations(template, attendees):
         return
 
     if template == "":
-        logging.error("Template is empty, no output files generated")
+        logging.error("Template is empty, no output files generated.")
         return
 
     if not attendees:
@@ -31,7 +31,7 @@ def generate_invitations(template, attendees):
 
             with open(output_filename, "w") as f:
                 f.write(filled_template)
-            logging.info(f"{output_filename} invation generated")
+            logging.info(f"{output_filename} invitation generated")
 
         except Exception as e:
             logging.error(f"{output_filename} invitation not generated: {e}")
