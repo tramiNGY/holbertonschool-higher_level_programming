@@ -7,7 +7,7 @@ def generate_invitations(template, attendees):
         logging.error("Invalid input types")
         return
 
-    if template == "":
+    if not template:
         logging.error("Template is empty, no output files generated.")
         return
 
