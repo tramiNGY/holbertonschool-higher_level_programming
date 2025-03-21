@@ -55,7 +55,7 @@ def products():
         if product:
             products = [product]
         else:
-            return render_template('product_display.html', error="Product not found.")
+            return render_template('product_display.html', error="Product not found")
 
     return render_template('product_display.html', products=products)
 
