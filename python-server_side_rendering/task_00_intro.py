@@ -3,11 +3,14 @@ import logging
 import os
 
 def generate_invitations(template, attendees):
-    if not isinstance(template, str) or not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
-        logging.error("Invalid input types")
+    if not isinstance(template, str):
+        logging.error("Template must be a string")
         return
-
-    if not template:
+    if not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
+        logging.error("Attendees must be a list of dictionaries")
+        return
+    
+    if not template or template == "":
         logging.error("Template is empty, no output files generated.")
         return
 
