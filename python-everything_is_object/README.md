@@ -177,7 +177,10 @@ print(l1) # [1, 2, 3]
 ```
 ## 7) Interning and Singleton
 ![interning](https://towardsdatascience.com/wp-content/uploads/2020/08/12bCl5cSdmLdcdcu4SJ7yZA.png)
-A singleton in Python refers to a value for which only one instance exists in memory. So any time you create that value, Python gives you a reference to the same object. Python only creates one shared instance of () in memory to save space and improve performance.
+
+**Interning** means that Python reuses identical objects by creating only one instance in memory for objects with the same value.
+
+A **singleton** in Python refers to a value for which only one instance exists in memory. So any time you create that value, Python gives you a reference to the same object. Python only creates one shared instance of () in memory to save space and improve performance.
 
 Example of singletons:
 - None
@@ -185,7 +188,7 @@ Example of singletons:
 - Empty typle ()
 - Small integers (<-5 < < 256)
 - Some short string (sometimes interned)
-Interning means that Python reuses identical objects by creating only one instance in memory for objects with the same value.
+
 ```
 >>> a = 89
 >>> b = 89
