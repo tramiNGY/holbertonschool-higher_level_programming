@@ -52,7 +52,7 @@ In the following code, do a and b point to the same object? Yes (when assigning 
 ```
 >>> s1 = "Best School"
 >>> s2 = "Best School"
->>> print(s1 is s2) # False (str with a space no interning, two distinc str objects created)
+>>> print(s1 is s2) # True (str considered simple (even with the space) so python uses interning)
 ```
 ```
 >>> l1 = [1, 2, 3]
