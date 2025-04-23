@@ -8,6 +8,7 @@ This project mentions the fundamental concepts of object identity, mutability, a
 ## 2) Id and type
 Every object in Python has:
 - A **type**, which defines what kind of object it is. It identifies the type of data that a variable can store.
+
 ![python types](https://miro.medium.com/v2/resize:fit:1400/1*QfI8H_8HplGa1v9IrrWjBA.png)
 - An **identity**, which is an object's unique memory address
 The id() function returns a unique id for the specified object. All objects in Python has its own unique id. The id is assigned to the object when it is created.
@@ -128,6 +129,8 @@ Knowing whether an object is mutable or not helps you:
 
 ## 6) How arguments are passed to functions and what does that imply for mutable and immutable objects
 ![pass by reference](https://miro.medium.com/v2/resize:fit:572/1*0Z1bXtvFVj5RIhn0EfFNAQ.png)
+
+
 Python uses **pass-by-object-reference**, also called pass-by-assignment.
 - The object itself is passed to the function, not a copy.
 - If the object is mutable, modifications inside the function affect the original.
