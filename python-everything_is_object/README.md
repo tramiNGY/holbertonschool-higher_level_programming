@@ -52,7 +52,7 @@ In the following code, do a and b point to the same object? Yes (when assigning 
 ```
 >>> s1 = "Best School"
 >>> s2 = "Best School"
->>> print(s1 is s2) # True (str considered simple (even with the space) so python uses interning)
+>>> print(s1 is s2) # False (str with a space no interning, two distinc str objects created)
 ```
 ```
 >>> l1 = [1, 2, 3]
@@ -73,9 +73,11 @@ Common mutable types:
 - list
 - dict
 - set
+
+**Aliases** occurs when two or more variables refer to the same object in memory. For mutable objects, changes made to one alias will reflect the other alias.
 ```
 l1 = [1, 2, 3]
-l2 = l1
+l2 = l1 [l2 is an alias to l1)
 l1.append(4)
 print(l2) # [1, 2, 3, 4]
 print(l1 == l2) # True (same value)
@@ -103,6 +105,26 @@ Common immutable types:
 - str
 - tuple
 - bool
+- frozenset (immutable version of a set)
+
+**Special cases Tuples and Frozensets**
+These types are immutable containers, meaning the container itself (structure, length, identity) cannot change after creation. But they can contain mutable objects inside them which can change without the container's stucture remaining the same.
+```
+l1 = [1, 2, 3]
+tpl = (l1, 4)
+l1.append(5)
+print(tpl) # ([1, 2, 3, 5], 4)
+
+# The tuple itself hasn't changed (still two elements) but it contains a modified list
+```
+```
+>>> l1 = [1, 2, 3]
+>>> tpl= (l1,)
+>>> fs = frozenset([tpl])
+>>> print(fs)  # frozenset({([1, 2, 3],)})
+>>> l1.append(4)
+>>> print(fs)  # frozenset({([1, 2, 3, 4],)})
+```
 ```
 a = 89
 b = a + 1
@@ -175,10 +197,33 @@ print(l1) # [1, 2, 3]
 # l1 outside the function still points to same object [1, 2, 3]
 
 ```
-## 7) Interning and Singleton
+## 7) Interning Pre-allocation and Singleton
 ![interning](https://towardsdatascience.com/wp-content/uploads/2020/08/12bCl5cSdmLdcdcu4SJ7yZA.png)
 
 **Interning** means that Python reuses identical objects by creating only one instance in memory for objects with the same value.
+
+**Pre-allocation** Python pre-allocates a set of small integers in memory. Known as integer interning/integer caching (range between -5 and 256). It permits to compare int very fast by checking if both variables point to the same address. It also reduces memory overhead avoiding the creation of new objects for common small integers.
+
+**Internal constants** defines the range of small integers which are pre-allocated (cached) in memory for reuse across the program.
+
+**NNSAMLLPOSINTS** : Number of Non-Negative Small integers
+Integers from -5 to -1 are preallocated → NSMALLNEGINTS = 5
+
+**NSMALLNEGINTS**: Number of Small Negative Integers
+Integers from 0 to 256 are preallocated → NSMALLPOSINTS = 257 (257 = 0 through 256 inclusive)
+
+These small integers are extremely common in most programs. 256 because it fits into 1 byte (2^8 = 256). -5 to -1 often used for indexes.
+
+```
+>>> a = 100
+>>> b = 100
+>>> print(a is b) # True - 100 is in the cached range (0 to 256)
+```
+```
+>>> a = 257
+>>> b = 257
+>>> print(a is b) # False - 100 is not the cached range (0 to 256)
+```
 
 A **singleton** in Python refers to a value for which only one instance exists in memory. So any time you create that value, Python gives you a reference to the same object. Python only creates one shared instance of () in memory to save space and improve performance.
 
@@ -186,7 +231,7 @@ Example of singletons:
 - None
 - True and False
 - Empty typle ()
-- Small integers (<-5 < < 256)
+- Small integers (<-5 < < 256 pre-allocation)
 - Some short string (sometimes interned)
 
 ```
